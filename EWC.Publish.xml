@@ -1,0 +1,9 @@
+<publishData>
+  <publishProfile
+    publishUrl="https://sriram980-001-site1.smarterasp.net:8172/msdeploy.axd"
+    msdeploySite="sriram980-001-site1"
+    destinationAppUrl="http://sriram980-001-site1.smarterasp.net/"
+    profileName="Default Settings"
+    publishMethod="MSDeploy"
+    userName="ifc\sriram980-001" />
+</publishData>

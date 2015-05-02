@@ -1,0 +1,244 @@
+﻿@model EWC.Models.Invoice
+<style>
+    h4 {
+   font-size: 14px;
+  font-weight: bold;
+  height: 15px;
+  margin-left:-10px;
+    }
+    /*.form-group {
+        border-bottom:1px solid black;
+    }
+    .form-group:last-of-type {
+        border-bottom:none;
+    }
+    .lrbor{
+        border:1px solid black;
+    }*/
+</style>
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-xs-12"><h3 class="text-center">Invoice</h3></div>
+        <div class="col-xs-5" style="padding-left:15%;">
+@(Model.Company==1?@Html.Partial("_Company1"):@Html.Partial("_Company2"))        </div>
+        <div class="col-xs-7 lrbor">
+            <h2> </h2>
+            <div class="form-group">
+            <label class="col-xs-4 control-label">Invoice No</label>
+        
+        <div class="col-xs-7">
+            @(Model.DCNo.Replace("EWJ/DC/","EWJ/INV/"))
+            @Html.ValidationMessageFor(model => model.DCNo)
+        </div>
+        </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.Date, new {@class="col-xs-4 control-label" })
+            <div class="col-xs-8">
+            @Html.DisplayFor(model => model.Date,new {@placeholder="DateTime",@readonly="readonly"})
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+        </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.ServiceTax,new {@class="col-xs-4 control-label" })
+        
+                <div class="col-xs-8">
+                    @Html.DisplayFor(model => model.ServiceTax,new {@placeholder="Service Tax No"})
+                    @Html.ValidationMessageFor(model => model.ServiceTax)
+                </div>
+         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TinNo,new {@class="col-xs-4 control-label" })
+            <div class="col-xs-8">
+                @Html.DisplayFor(model => model.TinNo,new {@placeholder="Tin No"})
+                @Html.ValidationMessageFor(model => model.TinNo)
+            </div>
+        </div>
+
+            <div class="form-group">
+            @Html.LabelFor(model => model.IncomeTaxPan,new {@class="col-xs-4 control-label" })
+            <div class="col-xs-8">
+                @Html.DisplayFor(model => model.IncomeTaxPan,new {@placeholder="IT Pan No"})
+                @Html.ValidationMessageFor(model => model.IncomeTaxPan)
+            </div>
+        </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-left"><hr /><h4>Customer Details</h4></div>
+        <div class="col-xs-6">
+            <div class="form-group">
+            @Html.LabelFor(model => model.customer.NameofCompany, new {@class="col-xs-6" })
+
+        <div class="col-xs-6">
+            @Html.DisplayFor(model => model.customer.NameofCompany,new {@placeholder="Name of Company"})
+            @Html.ValidationMessageFor(model => model.customer.NameofCompany)
+        </div>
+        </div>
+                        <div class="form-group">
+            @Html.LabelFor(model => model.customer.Address, new {@class="col-xs-4" })
+
+        <div class="col-xs-8">
+            @(Model.customer.Address.Replace(";","<br/>"))
+            @Html.ValidationMessageFor(model => model.customer.Address)
+        </div>
+        </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.customer.ContactPerson, new {@class="col-xs-4" })
+
+        <div class="col-xs-8">
+            @Html.DisplayFor(model => model.customer.ContactPerson,new {@placeholder="Contact Person Name"})
+            @Html.ValidationMessageFor(model => model.customer.ContactPerson)
+        </div>
+
+            </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.customer.ContactNo, new {@class="col-xs-4" })
+
+        <div class="col-xs-8">
+            @Html.DisplayFor(model => model.customer.ContactNo,new {@placeholder="Contact No"})
+            @Html.ValidationMessageFor(model => model.customer.ContactNo)
+        </div>
+            </div>
+
+
+            </div>
+
+        <div class="col-xs-6">
+            <div class="form-group">
+            @Html.LabelFor(model => model.customer.InwardDcNo, new {@class="col-xs-4" })
+        <div class="col-xs-8">
+            @Html.DisplayFor(model => model.customer.InwardDcNo,new {@placeholder="Inward DC No"})
+            @Html.ValidationMessageFor(model => model.customer.InwardDcNo)
+        </div>
+        </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.customer.Dated, new {@class="col-xs-4" })
+        <div class="col-xs-8">
+            @Html.DisplayFor(model => model.customer.Dated,new {@placeholder="Inward DC Dated",@readonly="readonly"})
+            @Html.ValidationMessageFor(model => model.customer.Dated)
+        </div>
+        </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.customer.CustomerTin, new {@class="col-xs-4" })
+        <div class="col-xs-8">
+            @Html.DisplayFor(model => model.customer.CustomerTin,new {@placeholder="Customer Tin"})
+            @Html.ValidationMessageFor(model => model.customer.Dated)
+        </div>
+        </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.customer.CustomerWorkOrderNo, new {@class="col-xs-7" })
+        <div class="col-xs-5">
+            @Html.DisplayFor(model => model.customer.CustomerWorkOrderNo,new {@placeholder="Customer Tin"})
+            @Html.ValidationMessageFor(model => model.customer.CustomerWorkOrderNo)
+        </div>
+        </div>
+                        <div class="form-group">
+            @Html.LabelFor(model => model.customer.ContactNo2, new {@class="col-xs-4" })
+
+        <div class="col-xs-8">
+            @Html.DisplayFor(model => model.customer.ContactNo2,new {@placeholder="Contact No"})
+            @Html.ValidationMessageFor(model => model.customer.ContactNo2)
+        </div>
+            </div>
+            <div class="form-group">
+            @Html.LabelFor(model => model.customer.ContactNo3, new {@class="col-xs-4" })
+        <div class="col-xs-8">
+            @Html.DisplayFor(model => model.customer.ContactNo3,new {@placeholder="Contactno"})
+            @Html.ValidationMessageFor(model => model.customer.ContactNo3)
+        </div>
+        </div>
+        </div>
+        <hr />
+
+    </div>
+    <div class="row text-left" id="itemsHolder">
+        <div class="col-xs-12 text-center"><hr /><h4>Items</h4></div>
+        
+            <div class="row bold"><div class="col-xs-1">Sno.</div>
+                <div class="col-xs-1">Part No.</div>
+            <div class="col-xs-3">Description</div>
+            <div class="col-xs-2">Material</div>
+                @*<div class="col-xs-1">ScrapReturn</div>*@
+                <div class="col-xs-1">UnitPrice</div>
+            <div class="col-xs-1 QtyforItems">Qty@*( @Html.DisplayFor(model => model.QtyUnits,new {@placeholder="'Kgs' or 'Tons' etc"}) ) *@</div>
+                <div class="col-xs-2">Amount</div>
+            </div>
+        @{var i = 0; var j = 0.1; j = 0;}
+        @do{
+        <div class="itemsRow row">
+                    <div class="col-xs-1">@(i+1)</div>
+            <div class="col-xs-1">@Html.DisplayFor(model => model.Items[i].Partno,new {@placeholder="Description"})</div>
+            <div class="col-xs-3">@Html.DisplayFor(model => model.Items[i].Desc,new {@placeholder="Description"})</div>
+            <div class="col-xs-2">@Html.DisplayFor(model => model.Items[i].Material,new {@placeholder="Material"})</div>
+            @*<div class="col-xs-1">@Html.Raw((Model.Items[i].scrapreturn)?"<span class=\"glyphicon glyphicon-ok\"></span>":"<span class=\"glyphicon glyphicon-remove\"></span>")</div>*@
+            <div class="col-xs-1 QtyforItems">@Html.DisplayFor(model => (model.Items[i].UnitPrice),new {@placeholder="Material"})</div>
+            <div class="col-xs-1 QtyforItems">@Html.DisplayFor(model => model.Items[i].Quantity,new {@placeholder="Material"})</div>
+            <div class="col-xs-2 QtyforItems">@Html.Raw((Model.Items[i].Quantity*Model.Items[i].UnitPrice))</div>
+            </div>
+            j = j + (((Model.Items[i].Quantity * Model.Items[i].UnitPrice) != 0) ? (Model.Items[i].Quantity * Model.Items[i].UnitPrice) : 1);
+            i++;
+        } while (null!=Model&&i < Model.Items.Count());
+
+        @{
+    var total = j + ((Model.ServiceTaxAmt * j) / 100) + ((Model.Educess * j) / 100) + ((Model.SheCess * j) / 100);
+            }
+            </div>
+        <div class="row">
+            <div class="col-xs-12"><div class="col-xs-7"></div><div class="col-xs-2 text-right">Sub Total :</div><div class="col-xs-3">@j</div></div>
+            <div class="col-xs-12">
+                <div class="col-xs-8">Payment Mode: @Model.paymode</div>
+                @if(!Model.fullypaid){<div class="col-xs-8">Paid Amount: @Model.paidamount ( @EWC.Models.Util.ConvertNumbertoWords((int)Model.paidamount) Only)</div>}
+                <div class="col-xs-offset-8">ServiceTax (@Model.ServiceTaxAmt %): @((Model.ServiceTaxAmt * j) / 100)</div>
+                <div class="col-xs-offset-8">Edu Cess (@Model.Educess%): @((Model.Educess* j) / 100)</div>
+                <div class="col-xs-offset-8">She Cess (@Model.SheCess%): @((Model.SheCess* j) / 100)</div>
+                <div class="col-xs-offset-8">Grand Total : @(total)</div>
+            </div>
+            <div class="col-xs-4">Invoice Grand Total In Words</div>
+            <div class="col-xs-8">@EWC.Models.Util.ConvertNumbertoWords((int)total) Only</div>
+        </div>
+    <br /><br />
+    <div class="row">
+        <div class="col-xs-6">
+            <b>Recieved By</b>
+            <br />Signature
+        </div>
+        <div class="col-xs-6">
+            <b>For Excel Water Jet Cutting</b>
+            <br />Authorized signature
+        </div>
+    </div>
+            
+}
+<br />
+<div class="hidden-print">
+    @Html.ActionLink("Back to List", "Index")<div class="pull-right btn btn-default" onclick="window.print()"><span class="glyphicon glyphicon-print"></span>Print</div><br />
+    
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#AddItemsRow').click(function () {
+            var myVariable = '<div class="itemsRow row">' +
+            '<div class="col-xs-1"></div>' +
+            '<div class="col-xs-1">' + ($('.itemsRow').length + 1) + '</div>' +
+            '<div class="col-xs-4"><input class="text-box single-line" id="Items_' + $('.itemsRow').length + '__Desc" name="Items[' + $('.itemsRow').length + '].Desc" type="text" ></div>' +
+            '<div class="col-xs-2"><input class="text-box single-line" id="Items_' + $('.itemsRow').length + '__Material" name="Items[' + $('.itemsRow').length + '].Material" type="text" ></div>' +
+            '<div class="col-xs-1 QtyforItems"><input class="text-box single-line" id="Items_' + $('.itemsRow').length + '__Quantity" name="Items[' + $('.itemsRow').length + '].Quantity" type="text" ></div>' +
+            '</div>';
+            $('#itemsHolder').append(myVariable);
+        });
+        $('[type="datetime"]').datetimepicker({ pickTime: true, "autoclose": true });
+
+    });
+
+</script>
+}
+

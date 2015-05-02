@@ -1,0 +1,172 @@
+﻿@model EWC.Models.OdeliveryChalan
+@{
+    ViewBag.Title = "Create";
+}
+<style>
+    .hiddens {
+        visibility:hidden;
+    }
+table, th, td {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+td{
+padding:5px 0px 5px 10px;
+}
+th{
+padding:5px 0px 5px 0px;
+
+}
+
+.container
+{
+margin:10px auto;
+
+
+}
+.sign-left
+{
+float:left;
+
+}
+.sign-right{
+float:right;
+}
+.part1-left
+{float:left;
+}
+.part1-right
+{float:right;
+}
+.border-bottom
+{
+border-bottom:0px;
+}
+</style>
+
+
+
+@using (Html.BeginForm())
+{  
+    <div class="text-center"><h3><b>Delivery Chalan</b></h3></div><br/>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				  @(Model.Company != 1 ? @Html.Partial("_Company2") : @Html.Partial("_Company1"))
+			</div>
+			<div  class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<table style="width:100%" class="table-hover">
+				
+				<tr>
+					<td class="success"><strong>DC No</strong></td>
+					<td>@Html.DisplayFor(model => model.DCNo)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Date</strong></td>
+					<td>@Html.DisplayFor(model => model.Date)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Service Tax</strong></td>
+					<td>@Html.DisplayFor(model => model.ServiceTax)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>TIN No.</strong></td>
+					<td>@Html.DisplayFor(model => model.TinNo)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>IT PAN/GIR No</strong></td>
+					<td>@Html.DisplayFor(model => model.IncomeTaxPan)</td> 
+				</tr>
+				</table>
+			</div>
+		</div>
+		<br/>
+		<div id="part4">
+			<table style="width:100%" class="table-hover">
+			<caption><h5><b><u>Customer Details</u></b></h5></caption>
+				<tr>
+					<td class="success" style="max-width:300px"><strong>Name of Company</strong></td>
+					<td style="max-width:300px">@Html.DisplayFor(model => model.customer.NameofCompany)</td> 
+					<td class="success"><strong>Inward Dc No</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.InwardDcNo)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Address</strong></td>
+					<td style="max-width:150px">@Html.DisplayFor(model => model.customer.Address)</td> 
+					<td class="success"><strong>Dated</strong></td> 
+					<td>@Model.customer.Dated.ToString("MM/dd/yyyy")</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Contact Person</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.ContactPerson)</td> 
+					<td class="success"><strong>Customer TIN</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.CustomerTin)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Contact No</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.ContactNo)</td> 
+					<td class="success"><strong>Work Order No</strong></td> 
+					<td>@Html.DisplayFor(model => model.customer.CustomerWorkOrderNo)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Contact No 2</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.ContactNo2)</td> 
+					<td ><strong> Contact No 3</strong></td> 
+					<td>@Html.DisplayFor(model => model.customer.ContactNo3)</td> 
+				</tr>
+				
+			</table>
+		</div>
+		<br/>
+		<div id="table5">
+			<table style="width:100%" class="table-hover">
+			<caption><h5><b><u>Items</u></b></h5></caption>
+				<tr class="mark">
+					<th class="text-center">Sno.</th>
+					<th class="text-center">Part</th>
+					<th class="text-center">Description</th>
+					<th class="text-center">Material</th>
+					<th class="text-center">Qty</th>
+					<th class="text-center">Scrap Return</th>
+				</tr>
+				
+				
+				
+                 @{var i = 0;}
+        @do
+        {
+            <tr class="text-center">
+					<td>@(i + 1)</td>
+					<td>@Html.DisplayFor(model => model.Items[i].Partno)</td>
+					<td>@Html.DisplayFor(model => model.Items[i].Desc)</td>
+					<td>@Html.DisplayFor(model => model.Items[i].Material)</td>
+					<td>@Html.DisplayFor(model => model.Items[i].Quantity)</td>
+					<td>@Html.Raw((Model.Items[i].scrapreturn) ? "<span class=\"glyphicon glyphicon-ok\"></span>" : "<span class=\"glyphicon glyphicon-remove\"></span>")</td>
+					
+				</tr>
+            i++;
+        } while (null != Model && i < Model.Items.Count());
+
+								
+			</table>
+		</div><br/>
+			<br/><br/><br/><br/>
+		<div class="sign">
+			<div class="sign-left" >
+				<p><strong>Recieved By</strong><br/>Signature</p>
+			</div>
+		
+			<div  class="sign-right">
+				<p><strong>For Excel Water Jet Cutting</strong><br/>Authorized signature</p>
+			</div>
+		</div>
+		
+		<br/><br/><br/>
+		<br/><br/><br/>
+		
+		<div class="hidden-print">
+    @Html.ActionLink("Back to List", "Index")<div class="pull-right btn btn-default" onclick="window.print()"><span class="glyphicon glyphicon-print"></span>Print</div><br />
+    
+</div>
+
+    
+}

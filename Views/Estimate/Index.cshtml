@@ -1,0 +1,73 @@
+﻿@model IEnumerable<EWC.Models.Estimate>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Estimates</h2>
+<table class="datatab"><thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            Invoice No
+
+        </th>
+        <th>
+            Company
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Contact No
+        </th>
+        <th>
+            Is Paid
+        </th>
+        <th></th>
+    </tr></thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @(item.DCNo.Replace("EWJ/WB/","EWJ/EST/"))
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.NameofCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactNo)
+        </td>
+        <td>
+            @if (item.fullypaid)
+            {
+                @Html.Raw("Paid <span class=\"glyphicon glyphicon-ok\"></span>")
+            }
+            else
+            {
+                @Html.Raw("With Due  <span class=\"glyphicon glyphicon-remove\"></span>")
+                
+            }
+        </td>
+        <td>
+            @if (User.Identity.Name.ToUpper().Equals("ADMIN"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.DeliveryChalanID })
+                @Html.Raw("|")
+                @Html.ActionLink("Delete", "Delete", new { id = item.DeliveryChalanID })
+            }|           
+             @Html.ActionLink("Details", "Print", new { id = item.DeliveryChalanID })
+        </td>
+    </tr>
+}
+        </tbody>
+</table>

@@ -1,0 +1,28 @@
+﻿@using EWC.Models
+@model IEnumerable<UserProfile>
+@{
+    ViewBag.Title = "allUsers";
+}
+
+ <h2>Users list</h2>
+    <table class="datatab">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                if(!user.UserName.Equals("Admin")){
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.UserName</td>
+                    <td>@Html.ActionLink("Delete","deleteUser",new{name=user.UserName})</td>
+                </tr>
+            }
+            }
+        </tbody>
+    </table>

@@ -1,0 +1,125 @@
+﻿@model EWC.Models.CustomerDb
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+
+    <style type="text/css">
+        .editor-label, .editor-field {
+            display:inline-block
+        }
+            .editor-field:after {
+                display:block;
+            }
+
+    </style>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+
+            <legend>CustomerDb</legend>
+ <table>   
+            <tr>
+                <td> @Html.LabelFor(model => model.NameofCompany)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.NameofCompany)
+                @Html.ValidationMessageFor(model => model.NameofCompany)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.InwardDcNo)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.InwardDcNo)
+                @Html.ValidationMessageFor(model => model.InwardDcNo)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.Address)
+            </td>
+            <td>
+                @Html.TextAreaFor(model => model.Address)
+                @Html.ValidationMessageFor(model => model.Address)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.Dated)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.Dated, new {Value=DateTime.Now })
+                @Html.ValidationMessageFor(model => model.Dated)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.CustomerTin)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.CustomerTin)
+                @Html.ValidationMessageFor(model => model.CustomerTin)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.ContactPerson)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.ContactPerson)
+                @Html.ValidationMessageFor(model => model.ContactPerson)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.CustomerWorkOrderNo)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.CustomerWorkOrderNo)
+                @Html.ValidationMessageFor(model => model.CustomerWorkOrderNo)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.ContactNo)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.ContactNo)
+                @Html.ValidationMessageFor(model => model.ContactNo)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.ContactNo2)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.ContactNo2)
+                @Html.ValidationMessageFor(model => model.ContactNo2)
+            </td>
+    </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.ContactNo3)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.ContactNo3)
+                @Html.ValidationMessageFor(model => model.ContactNo3)
+            </td>
+</table>    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <hr />
+@*    @{ Html.RenderAction("Index"); }
+   *@
+</body>
+</html>

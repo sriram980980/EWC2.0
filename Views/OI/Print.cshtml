@@ -1,0 +1,214 @@
+﻿@model EWC.Models.Oinvoice
+@{
+    ViewBag.Title = "Create";
+}<style>
+
+     .hiddens {
+         visibility:hidden;
+     }
+table, th, td {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+td{
+padding:2px 0px 2px 3px;
+}
+th{
+padding:3px 2px 2px 3px;
+
+}
+     .capitalised {
+         text-transform:capitalize;
+     }
+
+.container
+{
+margin:10px auto;
+
+
+}
+.sign-left
+{
+float:left;
+
+}
+.sign-right{
+float:right;
+}
+.part1-left
+{float:left;
+}
+.part1-right
+{float:right;
+}
+.border-bottom
+{
+border-bottom:0px;
+}
+</style>
+
+
+
+@using (Html.BeginForm())
+{  
+    <div class="text-center"><h3><b>Invoice</b></h3></div><br/>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				  @(Model.Company != 1 ? @Html.Partial("_Company2") : @Html.Partial("_Company1"))
+			</div>
+			<div  class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<table style="width:100%" class="table-hover">
+				
+				<tr>
+					<td class="success"><strong>Invoice No</strong></td>
+					<td>@((Model.DCNo+"").Replace("EWJ/DC/", "EWJ/INV/")) </td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Date</strong></td>
+					<td>@Html.DisplayFor(model => model.Date)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Service Tax</strong></td>
+					<td>@Html.DisplayFor(model => model.ServiceTax)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>TIN No.</strong></td>
+					<td>@Html.DisplayFor(model => model.TinNo)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>IT PAN/GIR No</strong></td>
+					<td>@Html.DisplayFor(model => model.IncomeTaxPan)</td> 
+				</tr>
+				</table>
+			</div>
+		</div>
+		<br/>
+		<div id="part4">
+			<table style="width:100%" class="table-hover">
+			<caption><h5><b><u>Customer Details</u></b></h5></caption>
+				<tr>
+					<td class="success"><strong>Name of Company</strong></td>
+					<td style="max-width:350px">@Html.DisplayFor(model => model.customer.NameofCompany)</td> 
+					<td class="success"><strong>Inward Dc No</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.InwardDcNo)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Address</strong></td>
+					<td style="max-width:150px">@Html.DisplayFor(model => model.customer.Address)</td> 
+					<td class="success"><strong>Dated</strong></td> 
+					<td>@Model.customer.Dated.ToString("MM/dd/yyyy")</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Contact Person</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.ContactPerson)</td> 
+					<td class="success"><strong>Customer TIN</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.CustomerTin)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Contact No</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.ContactNo)</td> 
+					<td class="success"><strong>Work Order No</strong></td> 
+					<td>@Html.DisplayFor(model => model.customer.CustomerWorkOrderNo)</td> 
+				</tr>
+				<tr>
+					<td class="success"><strong>Contact No 2</strong></td>
+					<td>@Html.DisplayFor(model => model.customer.ContactNo2)</td> 
+					<td ><strong><strong>Contact No 3</strong></td> 
+					<td>@Html.DisplayFor(model => model.customer.ContactNo3)</td> 
+				</tr>
+				
+			</table>
+		</div>
+		<br/>
+    <div id="table5">
+			<table style="width:100%" class="table-hover">
+			<caption><h5><b><u>Items</u></b></h5></caption>
+				<tr class="mark">
+					<th >Sno.</th>
+					<th >Part</th>
+					<th >Description</th>
+					<th >Material</th>
+					<th >UnitPrice</th>
+					<th style="min-width:160px" >Qty</th>
+					<th >Amount</th>
+				</tr>
+
+
+    
+    @{var i = 0; var j = 0.1; j = 0;}
+        @do
+        {
+       				<tr class="">
+					<td>@(i + 1)</td>
+					<td>@Html.DisplayFor(model => model.Items[i].Partno)</td>
+					<td>@Html.DisplayFor(model => model.Items[i].Desc)</td>
+					<td>@Html.DisplayFor(model => model.Items[i].Material)</td>
+					<td>@Html.DisplayFor(model => (model.Items[i].UnitPrice))</td>
+					<td>@Html.DisplayFor(model => model.Items[i].Quantity)</td>
+					<td class="success">@Html.Raw((Model.Items[i].Quantity * Model.Items[i].UnitPrice))</td>
+				</tr>
+
+            j = j + (((Model.Items[i].Quantity * Model.Items[i].UnitPrice) != 0) ? (Model.Items[i].Quantity * Model.Items[i].UnitPrice) : 1);
+            i++;
+        } while (null != Model && i < Model.Items.Count());
+                @{
+        var total = j + ((Model.ServiceTaxAmt * j) / 100) + ((Model.Educess * j) / 100) + ((Model.SheCess * j) / 100);
+            }
+           
+                		<tr>
+					<td colspan="5" class="hiddens border-collapse"></td>
+					<td class=" success"><strong>Sub Total :&nbsp;</strong></td>
+					<td class=" success"><strong>@j </strong></td>
+				</tr>
+				<tr>
+					<td colspan="5" class="hiddens"></td><td>ServiceTax (@Model.ServiceTaxAmt%)</td>
+					<td class=" success">@((Model.ServiceTaxAmt * j) / 100)</td>
+				</tr>
+				<tr>
+					<td colspan="5" class="hiddens"></td><td>Edu Cess (@Model.Educess%)</td>
+					<td class=" success">@((Model.Educess * j) / 100)</td>
+				</tr>
+				<tr>
+					<td colspan="5" class="hiddens"></td><td>She Cess  (@Model.SheCess%)</td>
+					<td class=" success">@((Model.SheCess * j) / 100)</td>
+				</tr>
+				<tr>
+					<td colspan="5" class="hiddens">In words : @EWC.Models.Util.ConvertNumbertoWords((int)total) </td>
+					<td class=" success"><strong>Grand Total: &nbsp;</strong></td>
+					<td class=" success"><strong>@total</strong></td>
+				</tr>
+				
+			</table>
+		</div><br/>
+			<div id="Payment">
+				<p class="capitalised">Grand Total: @total (@EWC.Models.Util.ConvertNumbertoWords((int)total) Only )<br />
+                    Payment Mode: @Model.paymode
+                    <br/>
+                    @if (!Model.fullypaid)
+                {
+                    <span class="capitalised">
+                        Paid Amount: @Model.paidamount ( @EWC.Models.Util.ConvertNumbertoWords((int)Model.paidamount) Only)<br />
+                        Due: @(total-Model.paidamount) ( @EWC.Models.Util.ConvertNumbertoWords((int)(total-Model.paidamount)) Only)
+			</span>
+                     }else{
+                        <span class="capitalised">Fully Paid: Yes </span>
+                    }</p>
+                    </div>
+			<br/>
+		<div class="sign">
+			<div class="sign-left" >
+				<p><strong>Recieved By</strong><br/>Signature</p>
+			</div>
+		
+			<div  class="sign-right">
+				<p><strong>For Excel Water Jet Cutting</strong><br/>Authorized signature</p>
+			</div>
+		</div>
+
+
+}
+<br /> <br /> <br />
+<div class="hidden-print">
+    @Html.ActionLink("Back to List", "Index")<div class="pull-right btn btn-default" onclick="window.print()"><span class="glyphicon glyphicon-print"></span>Print</div><br />
+    
+</div>

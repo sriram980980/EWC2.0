@@ -1,0 +1,79 @@
+﻿@model IEnumerable<EWC.Models.WayBill>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>WayBills</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="datatab">
+    <thead><tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DCNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceTax)
+        </th>
+        <th>
+            Customer Company
+        </th>
+        <th>
+            Person
+        </th>
+        <td>
+            <span class="glyphicon glyphicon-phone-alt"></span>
+
+        </td><th>Est</th>
+        <th></th></tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DCNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceTax)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.NameofCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactPerson)
+        </td>
+        <td>
+              @Html.DisplayFor(modelItem => item.customer.ContactNo)
+
+        </td><td>@if (item.invoiceCreated)
+            {
+                @Html.Raw("<span class=\"glyphicon glyphicon-ok\"></span>")
+            }
+            else
+            {
+                @Html.Raw("<span class=\"glyphicon glyphicon-remove\"></span>")
+                
+            }</td>
+        <td>
+            @Html.ActionLink("Estimate","Create" ,"Estimate",new { id=item.DeliveryChalanID }, new { id=item.DeliveryChalanID })| 
+            @if (User.Identity.Name.ToUpper().Equals("ADMIN"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.DeliveryChalanID })
+                @Html.Raw("|")
+                @Html.ActionLink("Delete", "Delete", new { id = item.DeliveryChalanID })
+            }|
+            @Html.ActionLink("Details", "Print", new { id=item.DeliveryChalanID }) 
+        </td>
+    </tr>
+}
+        </tbody>
+</table>

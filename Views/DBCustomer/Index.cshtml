@@ -1,0 +1,119 @@
+﻿@model IEnumerable<EWC.Models.CustomerDb>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+     @Styles.Render("~/Content/css")
+        @Styles.Render("~/bundles/css")
+    <style>
+        .editor-lable,.editor-field {
+            display:inline-block
+        }
+
+    </style>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="data"><thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameofCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InwardDcNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerTin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactPerson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerWorkOrderNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNo2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNo3)
+            </th>
+            <th></th>
+        </tr>
+    </thead><tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td class="nof">
+                @Html.DisplayFor(modelItem => item.NameofCompany)
+            </td>
+            <td class="inward">
+                @Html.DisplayFor(modelItem => item.InwardDcNo)
+            </td>
+            <td class="addr">
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td class="ctin">
+                @Html.DisplayFor(modelItem => item.CustomerTin)
+            </td>
+            <td class="conp">
+                @Html.DisplayFor(modelItem => item.ContactPerson)
+            </td>
+            <td class="workno">
+                @Html.DisplayFor(modelItem => item.CustomerWorkOrderNo)
+            </td>
+            <td class="contno">
+                @Html.DisplayFor(modelItem => item.ContactNo)
+            </td>
+            <td class="contno2">
+                @Html.DisplayFor(modelItem => item.ContactNo2)
+            </td>
+            <td class="contno3">
+                @Html.DisplayFor(modelItem => item.ContactNo3)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.CustomerID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.CustomerID })
+                <button type="button" class="btn btn-primary pickind">Pick</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+    </table>
+</body>
+    
+        @Scripts.Render("~/bundles/jquery")       
+        @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript">
+        $('table.data').DataTable();
+        $(document).on('click', '.pickind', function (e) {
+            var parents = $("body", parent.document);
+            var tr = $(e.target).closest('tr');
+            $(parents).find('#customer_NameofCompany').val($.trim(tr.find('.nof').text()));
+            $(parents).find('#customer_Address').val($.trim(tr.find('.addr').text()));
+            $(parents).find('#customer_InwardDcNo').val($.trim(tr.find('.inward').text()));
+            $(parents).find('#customer_ContactPerson').val($.trim(tr.find('.conp').text()));
+            $(parents).find('#customer_ContactNo').val($.trim(tr.find('.contno').text()));
+            $(parents).find('#customer_CustomerTin').val($.trim(tr.find('.inward').text()));
+            $(parents).find('#customer_CustomerWorkOrderNo').val($.trim(tr.find('.workno').text()));
+            $(parents).find('#customer_ContactNo2').val($.trim(tr.find('.contno2').text()));
+            $(parents).find('#customer_ContactNo3').val($.trim(tr.find('.contno3').text()));
+            parents.find('.modal-backdrop').trigger('click');
+        });
+        </script>
+</html>

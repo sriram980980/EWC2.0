@@ -1,0 +1,55 @@
+﻿@model EWC.Models.Estimate
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Estimate</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DCNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DCNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceTax)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceTax)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TinNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TinNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IncomeTaxPan)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IncomeTaxPan)
+    </div>
+
+    
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

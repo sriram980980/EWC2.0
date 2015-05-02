@@ -1,0 +1,123 @@
+﻿@model EWC.Models.CustomerDb
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <style>
+        .editor-lable,.editor-field {
+            display:inline-block
+        }
+
+    </style>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>CustomerDb</legend>
+    
+            @Html.HiddenFor(model => model.CustomerID)
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.NameofCompany)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.NameofCompany)
+                @Html.ValidationMessageFor(model => model.NameofCompany)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.InwardDcNo)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.InwardDcNo)
+                @Html.ValidationMessageFor(model => model.InwardDcNo)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Address)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Address)
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Dated)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Dated)
+                @Html.ValidationMessageFor(model => model.Dated)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CustomerTin)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CustomerTin)
+                @Html.ValidationMessageFor(model => model.CustomerTin)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContactPerson)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ContactPerson)
+                @Html.ValidationMessageFor(model => model.ContactPerson)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CustomerWorkOrderNo)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CustomerWorkOrderNo)
+                @Html.ValidationMessageFor(model => model.CustomerWorkOrderNo)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContactNo)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ContactNo)
+                @Html.ValidationMessageFor(model => model.ContactNo)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContactNo2)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ContactNo2)
+                @Html.ValidationMessageFor(model => model.ContactNo2)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContactNo3)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ContactNo3)
+                @Html.ValidationMessageFor(model => model.ContactNo3)
+            </div>
+    
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿.control-label {
+    font-weight:500;
+}
+.form-group {
+clear:both;
+}
+.col-sm-9 input {
+width:80%;
+}
+.col-sm-9 textarea {
+    resize: none;
+    width:80%;
+}
+#logoutForm {
+
+}
+#AddItemsRow {
+display:block;
+cursor:pointer;
+}
+.companylogo {
+  width: 120px;
+  margin: 0px;
+  padding-left:20px;
+  margin-left:-25px;
+}
+.input-validation-error {
+border:1px solid red;
+}
+.itemsRow input {
+    width:95%;
+}
+
+@media print{
+    body {
+        
+        }
+}
+.col-xs-6.tomp input {
+width:90%
+}
+input, textarea {
+    margin-bottom:2px;
+}
+
+.bold {
+font-weight:600;
+}
+h4 {
+    text-align:center;
+}
+label {
+white-space:nowrap;
+}

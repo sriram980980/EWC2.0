@@ -1,0 +1,51 @@
+﻿@model EWC.Models.Invoice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Invoice</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DCNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DCNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceTax)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceTax)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TinNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TinNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IncomeTaxPan)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IncomeTaxPan)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.DeliveryChalanID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
