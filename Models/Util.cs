@@ -7,6 +7,13 @@ namespace EWC.Models
 {
     public class Util
     {
+        public static string convertNtoWords(double numbers) { 
+        int number = (int)numbers;
+            int paise=((int)((numbers-number)*100));
+            if(paise>0)
+        return ConvertNumbertoWords(number)+" Rupees And "+ConvertNumbertoWords(paise)+" Paise";
+            return ConvertNumbertoWords(number) + " Rupees";
+        }
         public static string ConvertNumbertoWords(int number)
         {
             if (number == 0)

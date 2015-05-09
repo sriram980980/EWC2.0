@@ -38,6 +38,7 @@
                     <li><a href="~/ODC/">Old DC</a></li>
                   <li><a href="~/OI/">Old Invoices</a></li>
                     @if (User.Identity.Name.ToUpper().Equals("ADMIN")){
+                        <li><a href="~/Reports/">Reports</a></li>
                 <li><a href="~/Account/allUsers/">Users</a></li>
                  <li><a href="~/WayBill/">WayBills</a></li>
                   <li><a href="~/Estimate/">EstiMates</a></li>
@@ -81,5 +82,8 @@
                 });
             });
         </script>
+        <script>
+            $('input[type="datetimey"]').datetimepicker({ pickTime: true, "autoclose": true });
+</script>
     </body>
 </html>

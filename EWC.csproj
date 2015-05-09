@@ -173,6 +173,7 @@
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ODCController.cs" />
     <Compile Include="Controllers\OIController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\WayBillController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -182,6 +183,7 @@
     <Compile Include="Models\Estimate.cs" />
     <Compile Include="Models\OdeliveryChalan.cs" />
     <Compile Include="Models\Oinvoice.cs" />
+    <Compile Include="Models\Report.cs" />
     <Compile Include="Models\WayBill.cs" />
     <Compile Include="Models\CustomerDb.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -385,6 +387,7 @@
     <Content Include="Views\OI\Edit.cshtml" />
     <Content Include="Views\OI\Index.cshtml" />
     <Content Include="Views\OI\Print.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -412,7 +415,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>18270</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:28042/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

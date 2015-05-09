@@ -56,5 +56,15 @@ namespace EWC.Models
         public Double labourcharges { get; set; }
         [DefaultValue(1)]
         public int Company { get; set; }
+        public Double getTotal()
+        {
+            Double tot = 0;
+            foreach (InvoiceItem i in Items)
+            {
+                tot += (i.Quantity * i.UnitPrice);
+            }
+            tot = tot + ((ServiceTaxAmt * tot) / 100) + ((Educess * tot) / 100) + ((SheCess * tot) / 100);
+            return tot;
+        }
     }
 }

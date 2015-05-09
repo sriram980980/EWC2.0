@@ -125,12 +125,12 @@ border-bottom:0px;
 			<table style="width:100%" class="table-hover">
 			<caption><h5><b><u>Items</u></b></h5></caption>
 				<tr class="mark">
-					<th >Sno.</th>
-					<th >Part</th>
+					<th >No</th>
+					<th >Part No</th>
 					<th >Description</th>
 					<th >Material</th>
 					<th >UnitPrice</th>
-					<th style="min-width:160px" >Qty</th>
+					<th style="min-width:160px" >Quantity</th>
 					<th >Amount</th>
 				</tr>
 
@@ -182,14 +182,14 @@ border-bottom:0px;
 			</table>
 		</div><br/>
 			<div id="Payment" class="capitalised">
-				<p>Grand Total: @total (@EWC.Models.Util.ConvertNumbertoWords((int)total) Only )<br />
+				<p>Grand Total: @total (@EWC.Models.Util.convertNtoWords(total) Only )<br />
                     Payment Mode: @Model.paymode
                     <br/>
                     @if (!Model.fullypaid)
                 {
                     <span class="capitalised">
-                        Paid Amount: @Model.paidamount ( @EWC.Models.Util.ConvertNumbertoWords((int)Model.paidamount) Only)<br />
-                        Due: @(total-Model.paidamount) ( @EWC.Models.Util.ConvertNumbertoWords((int)(total-Model.paidamount)) Only)
+                        Paid Amount: @Model.paidamount ( @EWC.Models.Util.convertNtoWords(Model.paidamount) Only)<br />
+                        Due: @(total-Model.paidamount) ( @EWC.Models.Util.convertNtoWords(total-Model.paidamount) Only)
 			</span>
                      }else{
                         <span>Fully Paid: Yes </span>
