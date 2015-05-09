@@ -1,0 +1,251 @@
+﻿@model EWC.Models.Report
+
+@{
+    ViewBag.Title = "Index";
+}
+<form action="~/Reports" method="get">
+    <input  type="datetimey" placeholder="From" value="@Model.start" name="start"/>
+    <input  type="datetimey" placeholder="From" value="@Model.end" name="enddate"/>
+    <input  type="submit"Value="Go"/>
+</form>
+@{
+    
+    double totalpaid = 0;
+    double totaldue = 0;
+    double grandTotal = 0;
+
+    }
+<h2>Invoices</h2>
+<table class="datatab"><thead>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Invoice No
+
+        </th>
+        <th>
+            Company
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Contact No
+        </th>
+        <th>
+            Is Fully Paid
+        </th><th>
+            Total
+        </th>
+        <th></th>
+    </tr></thead>
+    <tbody>
+        @if (Model.invoices != null && Model.invoices.Count != 0)
+        {            foreach (var item in Model.invoices)
+            {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @if (item.DCNo != null)
+            {
+                    @(item.DCNo.Replace("EWJ/DC/", "EWJ/INV/"))
+            }
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.NameofCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactNo)
+        </td>
+        <td>
+            @if (item.fullypaid)
+            {
+                totalpaid+=item.getTotal();
+                @Html.Raw(" <span class=\"glyphicon glyphicon-ok\"></span>")
+            }
+            else
+            {
+                totaldue+=(item.getTotal()-item.paidamount);
+                @Html.Raw("<span class=\"glyphicon glyphicon-remove\"></span>Paid:")
+                @item.paidamount
+                
+            }
+        </td><th>
+            @item.getTotal()
+        </th>
+        <td>
+          
+        </td>
+    </tr>
+            }
+        }
+        </tbody>
+</table>
+<br />Total Paid : @totalpaid ,; Total Due : @totaldue ,;  Grand Total : @(totalpaid+totaldue)<br />
+
+
+@{
+    
+     totalpaid = 0;
+     totaldue = 0;
+     grandTotal = 0;
+
+    }
+<h2>Estimates</h2>
+<table class="datatab"><thead>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Invoice No
+
+        </th>
+        <th>
+            Company
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Contact No
+        </th>
+        <th>
+            Is Fully Paid
+        </th><th>
+            Total
+             </th>
+        <th></th>
+    </tr></thead>
+    <tbody>
+@if (Model.estimates!=null&&Model.estimates.Count != 0)
+{
+foreach (var item in Model.estimates)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @if(item.DCNo!=null){
+                    @(item.DCNo.Replace("EWJ/DC/","EWJ/EST/"))
+            }
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.NameofCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactNo)
+        </td>
+        <td>
+            @if (item.fullypaid)
+            {
+                totalpaid+=item.getTotal();
+                @Html.Raw(" <span class=\"glyphicon glyphicon-ok\"></span>")
+            }
+            else
+            {
+                totaldue+=(item.getTotal()-item.paidamount);
+                @Html.Raw("<span class=\"glyphicon glyphicon-remove\"></span>Paid:")
+                @item.paidamount
+                
+            }
+        </td><th>
+            @item.getTotal()
+        </th>
+        <td>
+          
+        </td>
+    </tr>
+}
+}
+        </tbody>
+</table>
+<br />Total Paid : @totalpaid ,; Total Due : @totaldue ,;  Grand Total : @(totalpaid+totaldue)<br />
+
+
+
+<h2>Old Invoices</h2>
+<table class="datatab"><thead>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Invoice No
+
+        </th>
+        <th>
+            Company
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Contact No
+        </th>
+        <th>
+            Is Fully Paid
+        </th><th>Total</th>
+        <th></th>
+    </tr></thead>
+    <tbody>
+@if (Model.oldInvoice!=null&&Model.oldInvoice.Count != 0)
+{
+foreach (var item in Model.oldInvoice)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @if(item.DCNo!=null){
+                    @(item.DCNo.Replace("EWJ/DC/","EWJ/OINV/"))
+            }
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.NameofCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.ContactNo)
+        </td>
+        <td>
+            @if (item.fullypaid)
+            {
+                totalpaid+=item.getTotal();
+                @Html.Raw(" <span class=\"glyphicon glyphicon-ok\"></span>")
+            }
+            else
+            {
+                totaldue+=(item.getTotal()-item.paidamount);
+                @Html.Raw("<span class=\"glyphicon glyphicon-remove\"></span>Paid:")
+                @item.paidamount
+                
+            }
+        </td><th>
+            @item.getTotal()
+        </th>
+        <td>
+          
+        </td>
+    </tr>
+}}
+        </tbody>
+</table>
+<br />Total Paid : @totalpaid ,; Total Due : @totaldue ,;  Grand Total : @(totalpaid+totaldue)<br />
