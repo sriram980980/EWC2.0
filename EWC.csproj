@@ -183,6 +183,7 @@
     <Compile Include="Models\Estimate.cs" />
     <Compile Include="Models\OdeliveryChalan.cs" />
     <Compile Include="Models\Oinvoice.cs" />
+    <Compile Include="Models\Quotation.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\WayBill.cs" />
     <Compile Include="Models\CustomerDb.cs" />

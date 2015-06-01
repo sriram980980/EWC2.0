@@ -20,5 +20,6 @@ namespace EWC.Models
         public DbSet<DcItems> dcItems { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceItem> InvoiceItems { get; set; }
+        public DbSet<Quotation> Quotations { get; set; }
     }
 }

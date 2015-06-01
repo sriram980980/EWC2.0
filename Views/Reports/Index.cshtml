@@ -68,7 +68,7 @@
         <td>
             @if (item.fullypaid)
             {
-                totalpaid+=item.getTotal();
+                @(totalpaid+=item.getTotal())
                 @Html.Raw(" <span class=\"glyphicon glyphicon-ok\"></span>")
             }
             else
@@ -76,6 +76,7 @@
                 totaldue+=(item.getTotal()-item.paidamount);
                 @Html.Raw("<span class=\"glyphicon glyphicon-remove\"></span>Paid:")
                 @item.paidamount
+                @(totalpaid+=item.paidamount)
                 
             }
         </td><th>
@@ -152,15 +153,15 @@ foreach (var item in Model.estimates)
         <td>
             @if (item.fullypaid)
             {
-                totalpaid+=item.getTotal();
+                @(totalpaid+=item.getTotal())
                 @Html.Raw(" <span class=\"glyphicon glyphicon-ok\"></span>")
             }
             else
             {
-                totaldue+=(item.getTotal()-item.paidamount);
+                @(totaldue+=(item.getTotal()-item.paidamount));
                 @Html.Raw("<span class=\"glyphicon glyphicon-remove\"></span>Paid:")
                 @item.paidamount
-                
+                @(totalpaid+=item.paidamount)
             }
         </td><th>
             @item.getTotal()
@@ -228,15 +229,15 @@ foreach (var item in Model.oldInvoice)
         <td>
             @if (item.fullypaid)
             {
-                totalpaid+=item.getTotal();
+                @(totalpaid+=item.getTotal())
                 @Html.Raw(" <span class=\"glyphicon glyphicon-ok\"></span>")
             }
             else
             {
-                totaldue+=(item.getTotal()-item.paidamount);
+                @(totaldue+=(item.getTotal()-item.paidamount))
                 @Html.Raw("<span class=\"glyphicon glyphicon-remove\"></span>Paid:")
                 @item.paidamount
-                
+                @(totalpaid+=item.paidamount)
             }
         </td><th>
             @item.getTotal()
